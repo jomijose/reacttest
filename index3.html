@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Basic Example with JSX</title>
+    <!--<link rel="stylesheet" href="../shared/css/base.css" />-->
+  </head>
+  <body>	
+    <h1>Basic Example with JSX</h1>
+     <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+ 
+   <div id="myDiv"></div>
+<script type="text/babel">
+
+class Button extends React.Component{
+   
+   constructor(props)
+    {
+           super(props);
+       
+    }
+   
+
+render() {
+    return (<button onClick={()=>this.props.onClickFunction(this.props.incrementValue)}>{this.props.incrementValue}</button>);
+}
+
+}
+
+const Result = (props) =>{
+
+return (<div>{props.counter}</div>);  
+}
+
+
+
+class App extends React.Component{
+ constructor(props)
+    {
+           super(props);
+       this.state = {counter : 0};
+        this.incrementCounter = this.incrementCounter.bind(this);
+    }
+
+
+  incrementCounter(incrementValue) {
+debugger;
+      this.setState(
+     
+      {
+      counter :  this.state.counter + incrementValue  });
+  }
+
+
+
+render() {
+return (<div><Button incrementValue={1} onClickFunction ={this.incrementCounter}/><Button incrementValue={5} onClickFunction ={this.incrementCounter}/><Result counter={this.state.counter} /></div>);
+}
+
+}
+
+
+    ReactDOM.render(
+    <App/>,
+    document.getElementById('myDiv')
+);
+</script>
+
+  </body>
+</html>
